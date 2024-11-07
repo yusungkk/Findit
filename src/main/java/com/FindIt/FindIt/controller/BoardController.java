@@ -12,9 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/board")
 public class BoardController {
 
+    private final BoardService boardService;
+
     @GetMapping
-    public String boardPage(){
-        return "board";
+    public String boardListPage(Model model){
+        model.addAttribute("items",boardService.findAll());
+        return "boardList";
+    }
+
+    @GetMapping
+    public String postListPage(Model model) {
     }
 
     // 게시판 생성 페이지
