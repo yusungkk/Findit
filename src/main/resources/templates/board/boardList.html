@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록 조회 페이지</title>
+    <link rel="stylesheet" href="/css/boardList.css">
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+</head>
+<body>
+<header th:replace="~{/fragment/header :: headerFragment}"></header>
+
+<div class="content">
+    <!-- 성수 LAB 섹션 -->
+    <div class="lab-section" onclick="location.href='/seongsu'">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="lab-title">성수 LAB</div>
+    </div>
+
+    <!-- 부산 LAB 섹션 -->
+    <div class="lab-section" onclick="location.href='/busan'">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="lab-title">부산 LAB</div>
+    </div>
+    <!-- 반복문으로 DB 내 게시판 섹션 출력-->
+    <form action="/board">
+        <div th:each="board : ${boards}">
+            <a th:href="'/post?boardId='+${board.boardId}">
+                <div class="lab-section">
+                    <img src="logo.png" alt="Logo" class="logo">
+                    <div class="lab-title"  th:text="${board.title}"></div>
+                </div>
+            </a>
+
+        </div>
+    </form>
+
+
+    <!-- 관리자 섹션 -->
+    <div class="admin-section">
+        <button class="admin-button" onclick="location.href='/board/create'">admin</button>
+    </div>
+</div>
+</body>
+</html>

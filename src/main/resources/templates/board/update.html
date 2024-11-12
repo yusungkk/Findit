@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시판 수정 페이지</title>
+  <link rel="stylesheet" href="/css/boardCreate.css">
+  <link rel="stylesheet" type="text/css" href="/css/header.css">
+</head>
+<body>
+<!-- 헤더 -->
+<header th:replace="~{/fragment/header :: headerFragment}"></header>
+<div class="container">
+
+  <div class="title">게시판 수정</div>
+
+  <form action="/update-board" method="POST" enctype="multipart/form-data">
+    <div class="input-box">
+      <!-- 기존 게시판 이름을 불러와서 입력 필드에 표시 -->
+      <input type="text" name="boardName" value="기존 게시판 이름" placeholder="게시판 이름을 입력해 주세요"><br>
+      <!-- 기존 파일을 불러와서 첨부파일 필드로 표시 -->
+      <input type="file" name="boardFile">
+    </div>
+
+    <div class="buttons">
+      <button class="register-btn" type="submit">수정</button>
+      <button class="cancel-btn" type="button" onclick="window.history.back();">취소</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
