@@ -42,11 +42,11 @@ function updateProfile(event) {
         });
 }
 
-// window.onload = function() {
-//     if (sessionStorage.getItem('modalOpen') === 'true') {
-//         openDeleteModal();
-//     }
-// }
+window.onload = function() {
+    if (sessionStorage.getItem('modalOpen') === 'true') {
+        openDeleteModal();
+    }
+}
 
 function openDeleteModal() {
     document.getElementById('deleteModal').style.display = 'block';
@@ -59,3 +59,4 @@ function closeDeleteModal() {
     document.body.classList.remove('modal-open');
     // sessionStorage.removeItem('modalOpen');
 }
+

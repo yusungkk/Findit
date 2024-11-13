@@ -48,8 +48,7 @@
             <span class="close" onclick="closeDeleteModal()">&times;</span>
         </div>
         <p>탈퇴 시 회원 정보는 되돌릴 수 없습니다.</p>
-        <form th:action="@{/user}" method="post">
-            <input type="hidden" name="_method" value="delete">
+        <form id= "deleteUserForm">
             <input type="hidden" id="loginId" name="loginId" th:value="${user.loginId}">
 
             <label for="delPassword">비밀번호:</label>
@@ -66,4 +65,56 @@
 </div>
 
 </body>
+
+<script>
+
+    function moreComments(commentPage, postId) {
+
+        fetch(`/post/${postId}/comments?page=${page}`, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => { //200번대 응답
+
+                // {
+                //     "comments": []
+                // }
+
+                const comments = [{}, {}, {}, {}];
+                comments.map(comment => {
+                    document.getElementById().append()
+                })
+
+            }).catch(error => { //401
+            console.log(error);
+            alert('댓글 불러오기 실패!');
+        });
+
+    }
+    document.getElementById("deleteUserForm").addEventListener('submit', function(event) {
+        event.preventDefault(); // 폼의 기본 제출 동작 방지
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch('/user', {
+            method: 'DELETE',
+            body: formData
+        })
+            // .then(response => response.json())
+            .then(data => { //200번대 응답
+                // 서버의 응답 데이터를 처리하여 alert을 띄움
+                console.log(data);
+                alert("성공적으로 삭제되었습니다!")
+                // document.getElementById('deleteModal').style.display = 'none';
+                // document.body.classList.remove('modal-open');
+                // 어디로 이동할지는 여러분들 알아서 ^^
+                location.href = 'https://www.naver.com';
+            }).catch(error => { //401
+                console.log(error);
+                alert('비밀번호가 맞지 않습니다!');
+            });
+
+    });
+</script>
 </html>

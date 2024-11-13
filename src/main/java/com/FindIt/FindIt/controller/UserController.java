@@ -8,6 +8,7 @@ import com.FindIt.FindIt.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    private  final UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -58,23 +59,25 @@ public class UserController {
 
     // 회원 탈퇴 api
     @DeleteMapping
-    public String deleteUser(@ModelAttribute UserWithdrawDto userWithdrawDto, HttpSession session, Model model,
-                             @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Void> deleteUser(@ModelAttribute UserWithdrawDto userWithdrawDto, HttpSession session, Model model,
+                                           @AuthenticationPrincipal CustomUserDetails userDetails) {
         //String sessionLoginId = (String) session.getAttribute("loginId");
         //User sessionUser = (User) session.getAttribute("user");
         log.debug("########## login id : " + userWithdrawDto.getLoginId());
 
         UserDto userDto = userService.deleteUser(userWithdrawDto, userDetails);
         log.debug("########## service result: {}", userDto.getLoginId());
-        if (userDto == null) {
-            session.invalidate();
-            return "redirect:/user/login";
-        } else {
-            model.addAttribute("user", userDto);
-            model.addAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-            log.debug("########## modelAttribute");
-            return "user/mypage";
-        }
+        return ResponseEntity.ok().build();
+
+//        if (userDto == null) {
+//            session.invalidate();
+//
+//        } else {
+//            model.addAttribute("user", userDto);
+//            model.addAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
+//            log.debug("########## modelAttribute");
+//            return ResponseEntity.status(401).build();
+//        }
     }
 
     /*로그인 페이지 접근*/
