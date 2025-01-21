@@ -29,9 +29,9 @@
 <br><br>
 
 ## 🧩 ERD
+![image](https://github.com/user-attachments/assets/d71495c7-8848-473b-bcfc-d0e75c5e122c)
 
-![image](https://github.com/user-attachments/assets/6c204c0e-668a-4fb5-8717-96107d6f031e)
-)
+
 <br><br>
 
 ## ⛓️ 와이어 프레임
