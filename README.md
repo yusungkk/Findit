@@ -35,8 +35,8 @@
 <br><br>
 
 ## ⛓️ 와이어 프레임
+![image](https://github.com/user-attachments/assets/a733a060-ee1f-4085-83f2-a3006c3b9fcb)
 
-![eclipseWAF](./assets/eclipseWAF.png)
 <br><br>
 
 ## 🔥 주요기능
